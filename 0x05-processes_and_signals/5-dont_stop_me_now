@@ -6,6 +6,4 @@ pid=$(pgrep -o "4-to_infinity_and_beyond")
 if [[ -n $pid ]]; then
     # Send SIGTERM signal to stop the process
     kill "$pid"
-else
-	echo "process not found"
 fi
