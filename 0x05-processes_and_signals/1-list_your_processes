@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays a list of currently running processes in a user-oriented format with process hierarchy.
+# Define the column headers
+# Use the ps command to display the process information
+ps auxf | awk '{printf "%-10s %-5s %-4s %-5s %-6s %-5s %-8s %-5s %-5s",$1,$2,$3,$4,$5,$6,$7,$8,$9; for (i=10; i<=NF; i++) {printf " %s", $i}; printf "\n"}'
