@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Function to display usage
+display_usage() {
+    echo "Usage: $0 {IP_ADDRESS}"
+}
+
+# Check if the script is run with at least one argument
+if [ $# -eq 0 ]; then
+    display_usage
+    exit 1
+fi
+
+# Extract the IP address from the argument
+ip_address=$1
+
+# Check if the IP address is valid using regex
+if ! [[ $ip_address =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "Error: Invalid IP address format."
+    display_usage
+    exit 1
+fi
+
+# Ping the IP address 5 times
+echo "Pinging $ip_address 5 times..."
+ping -c 5 "$ip_address"
