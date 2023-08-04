@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Function to display usage
+fn=$(basename "${BASH_SOURCE[@]}")
 display_usage() {
-    echo "Usage: $0 {IP_ADDRESS}"
+    echo "Usage: ${fn} {IP_ADDRESS}"
 }
 
 # Check if the script is run with at least one argument
