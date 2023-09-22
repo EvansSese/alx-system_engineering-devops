@@ -2,6 +2,6 @@
 
 exec { 'kill':
   command     => 'pkill killmenow',
-  refreshonly => 'true',
-  subscribe   => Service[killmenow],
+  refreshonly => true,
+  subscribe   => Service[bash],
 }
