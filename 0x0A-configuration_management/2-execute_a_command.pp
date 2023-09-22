@@ -3,5 +3,5 @@
 exec { 'kill':
   command     => 'pkill killmenow',
   refreshonly => true,
-  subscribe   => Service[bash],
+  provider   => shell,
 }
