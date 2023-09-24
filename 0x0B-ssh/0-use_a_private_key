@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Allow a connection to the remote host
+ssh -i ~/.ssh/school ubuntu@34.205.65.1
