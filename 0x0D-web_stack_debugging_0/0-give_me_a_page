@@ -3,4 +3,4 @@
 cd /var/www/html/
 echo "Hello Holberton" > index.html
 # Start Apache server
-sudo service apache2 start
+service apache2 start
