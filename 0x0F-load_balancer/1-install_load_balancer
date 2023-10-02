@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Install HAproxy
+sudo apt-get update -y
+sudo apt-get install haproxy -y
+# Backup the original config file
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+load_balancer_config=\
+"frontend load-balancer
+    bind *:80
+    mode http
+    default_backend web-servers
+
+backend web-servers
+    mode http
+    balance roundrobin
+    server 277128-web-01 54.87.250.91 check
+    server 277128-web-02 3.89.160.129 check"
+echo "$load_balancer_config" | sudo tee /etc/haproxy/haproxy.cfg
+# enable haproxy to be started by init script
+sudo systemctl enable haproxy
+sudo systemctl start haproxy
+# Make HAProxy manageable via an init script
+echo '#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          haproxy
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: HAProxy Load Balancer
+### END INIT INFO
+
+# Make sure HAProxy is started with system boot
+if [ "$1" = "start" ]; then
+    systemctl start haproxy
+fi
+
+# Make sure HAProxy is stopped with system shutdown
+if [ "$1" = "stop" ]; then
+    systemctl stop haproxy
+fi
+# Restart HAProxy
+if [ "$1" = "restart" ]; then
+    systemctl restart haproxy
+fi
+
+# Status of HAProxy
+if [ "$1" = "status" ]; then
+    systemctl status haproxy
+fi
+
+exit 0' | sudo tee /etc/init.d/haproxy
+# Set execute permissions for the init script
+sudo chmod +x /etc/init.d/haproxy
+
+# Enable the init script
+sudo update-rc.d haproxy defaults
