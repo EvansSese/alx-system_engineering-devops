@@ -13,8 +13,8 @@ load_balancer_config=\
 backend web-servers
     mode http
     balance roundrobin
-    server 277128-web-01 54.87.250.91 check
-    server 277128-web-02 3.89.160.129 check"
+    server 277128-web-01 54.87.250.91:80 check
+    server 277128-web-02 3.89.160.129:80 check"
 echo "$load_balancer_config" | sudo tee /etc/haproxy/haproxy.cfg
 # enable haproxy to be started by init script
 sudo service haproxy start
