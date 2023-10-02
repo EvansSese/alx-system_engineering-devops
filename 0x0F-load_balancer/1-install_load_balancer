@@ -17,8 +17,7 @@ backend web-servers
     server 277128-web-02 3.89.160.129 check"
 echo "$load_balancer_config" | sudo tee /etc/haproxy/haproxy.cfg
 # enable haproxy to be started by init script
-sudo systemctl enable haproxy
-sudo systemctl start haproxy
+sudo service haproxy start
 # Make HAProxy manageable via an init script
 echo '#!/bin/sh
 ### BEGIN INIT INFO
