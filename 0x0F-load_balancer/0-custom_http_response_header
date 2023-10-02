@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Install nginx web server, and isert hellow world in index
+sudo apt-get update -y
+sudo apt-get install -y nginx
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+# Create redirection page
+echo "Ceci n'est pas une page" > /var/www/html/error_404.html
+# backup default nginx server config file
+sudo cp /etc/nginx/sites-enabled/default nginx-sites-enabled_default.backup
+custom_server_config=\
+"server {
+		listen 80 default_server;
+		listen [::]:80 default_server;
+		root /var/www/html;
+		index index.html index.htm index.nginx-debian.html
+		server_name_;
+		add_header X-Served-By \$hostname;
+		if (\$request_filename ~ redirect_me){
+			rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+		}
+		error_page 404 /error_404.html;
+		location = /error_404.html {
+			internal;
+		}
+}"
+echo "$custom_server_config" | sudo dd status=none of=/etc/nginx/sites-enabled/default
+# Restart nginx to apply changes
+sudo service nginx restart
