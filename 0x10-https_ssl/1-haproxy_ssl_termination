@@ -1,0 +1,15 @@
+frontend evanssese.tech
+    timeout client  30s
+    timeout connect 60s
+    timeout server 30s
+    bind *:443 ssl crt /etc/letsencrypt/csr/0000_csr-certbot.pem
+    reqadd X-Forwarded-Proto:\ https
+    default_backend evanssese.tech_backend
+
+backend evanssese.tech_backend
+    timeout connect  60s
+    timeout server  30s
+    timeout client 30s
+    balance roundrobin
+    server 277128-web-01 54.87.250.91:80 check
+    server 277128-web-02 3.89.160.129:80 check
