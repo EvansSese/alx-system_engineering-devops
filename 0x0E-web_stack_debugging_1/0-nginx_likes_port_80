@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # Commands to open port 80 (http)
-sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
