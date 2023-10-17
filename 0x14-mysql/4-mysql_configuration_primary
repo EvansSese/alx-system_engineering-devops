@@ -9,3 +9,5 @@ log-error       = /var/log/mysql/error.log
 symbolic-links=0
 server-id = 1
 log_bin = /var/log/mysql/mysql-bin.log
+# Database we want to replicate
+binlog_do_db    = tyrell_corp
