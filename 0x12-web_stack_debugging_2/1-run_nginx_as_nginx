@@ -9,7 +9,7 @@ sed -i 's/listen       80;/listen       8080;/' /etc/nginx/conf.d/default.conf
 service nginx restart
 
 # Check Nginx status
-if ps aux | grep -q "[n]ginx: master process"; then
+if pgrep -q "[n]ginx: master process"; then
   echo "Nginx is running as the nginx user and listening on port 8080."
 else
   echo "Nginx configuration failed."
