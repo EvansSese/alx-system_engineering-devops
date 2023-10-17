@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Update the Nginx configuration to run as the nginx user
+sed -i 's/user  nginx;/user  nginx;/' /etc/nginx/nginx.conf
+
+# Change the default listen configuration to port 8080 on all active IPs
+sed -i 's/listen       80;/listen       8080;/' /etc/nginx/conf.d/default.conf
+
+# Restart Nginx to apply the changes
+service nginx restart
+
+# Check Nginx status
+if ps aux | grep -q "[n]ginx: master process"; then
+  echo "Nginx is running as the nginx user and listening on port 8080."
+else
+  echo "Nginx configuration failed."
+fi
