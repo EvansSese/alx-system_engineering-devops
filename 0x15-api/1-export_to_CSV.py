@@ -24,14 +24,7 @@ def get_data():
 
         employee_name = user_json["name"]
         employee_id = user_json["id"]
-        total_tasks = len(todos_json)
-        completed_tasks = sum(1 for task in todos_json if task["completed"])
 
-        print(f"Employee {employee_name} is done with tasks({completed_tasks}"
-              f"/{total_tasks}):")
-        for completed_task in todos_json:
-            if completed_task["completed"]:
-                print(f"\t {completed_task['title']}")
         csv_file_name = f"{employee_id}.csv"
         with open(csv_file_name, "w", newline="") as file:
             csv_writer = csv.writer(file, delimiter=',', quotechar='"',
