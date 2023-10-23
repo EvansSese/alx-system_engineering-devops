@@ -10,7 +10,7 @@ employee_id = sys.argv[1]
 
 
 def get_data(employee_id):
-    """ Function to get data"""
+    """ Function to get data """
     url = "https://jsonplaceholder.typicode.com/"
     users_url = f"{url}users/{employee_id}"
     todos_url = f"{url}todos?userId={employee_id}"
@@ -37,4 +37,5 @@ def get_data(employee_id):
 
 
 if __name__ == "__main__":
+    """ Run the file"""
     get_data(employee_id)
