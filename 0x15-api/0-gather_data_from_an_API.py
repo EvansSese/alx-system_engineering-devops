@@ -29,7 +29,7 @@ def get_data():
               f"/{total_tasks}):")
         for completed_task in todos_json:
             if completed_task["completed"]:
-                print(f"\t{completed_task['title']}")
+                print(f"\t {completed_task['title']}")
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
 
