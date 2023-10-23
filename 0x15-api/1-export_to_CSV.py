@@ -25,7 +25,7 @@ def get_data():
         employee_username = user_json.get('username')
 
         csv_file_name = f"{employee_id}.csv"
-        with open(csv_file_name, "w", newline="") as file:
+        with open(csv_file_name, "w") as file:
             csv_writer = csv.writer(file, delimiter=',', quotechar='"',
                                     quoting=csv.QUOTE_ALL, lineterminator='\n')
             for task in todos_json:
