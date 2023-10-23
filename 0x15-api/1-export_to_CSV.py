@@ -22,15 +22,15 @@ def get_data():
         todos.raise_for_status()
         todos_json = todos.json()
 
-        employee_name = user_json["name"]
-        employee_id = user_json["id"]
+        employee_username = user_json.get('username')
+        employee_id = user_json.get("id")
 
         csv_file_name = f"{employee_id}.csv"
         with open(csv_file_name, "w", newline="") as file:
             csv_writer = csv.writer(file, delimiter=',', quotechar='"',
                                     quoting=csv.QUOTE_ALL, lineterminator='\n')
             for task in todos_json:
-                csv_writer.writerow([employee_id, employee_name,
+                csv_writer.writerow([employee_id, employee_username,
                                      str(task.get("completed")),
                                      task.get("title")])
     except requests.exceptions.RequestException as e:
