@@ -23,14 +23,13 @@ def get_data():
         todos_json = todos.json()
 
         employee_username = user_json.get('username')
-        employee_id = user_json.get("id")
 
         csv_file_name = f"{employee_id}.csv"
         with open(csv_file_name, "w", newline="") as file:
             csv_writer = csv.writer(file, delimiter=',', quotechar='"',
                                     quoting=csv.QUOTE_ALL, lineterminator='\n')
             for task in todos_json:
-                csv_writer.writerow([employee_id, employee_username,
+                csv_writer.writerow([str(employee_id), employee_username,
                                      str(task.get("completed")),
                                      task.get("title")])
     except requests.exceptions.RequestException as e:
