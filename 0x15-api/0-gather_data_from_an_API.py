@@ -6,11 +6,9 @@ import requests
 import sys
 
 
-employee_id = sys.argv[1]
-
-
-def get_data(employee_id):
+def get_data():
     """ Function to get data """
+    employee_id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
     users_url = f"{url}users/{employee_id}"
     todos_url = f"{url}todos?userId={employee_id}"
@@ -38,4 +36,4 @@ def get_data(employee_id):
 
 if __name__ == "__main__":
     """ Run the file"""
-    get_data(employee_id)
+    get_data()
