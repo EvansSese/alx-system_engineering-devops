@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-""" Function to return number of subscribers """
+""" Function to return top ten posts """
 import requests
 import sys
 
 
 def top_ten(subreddit):
-    """ Function to fetch subs """
+    """ Function to fetch top ten posts """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {
-        'User-Agent': '0-subs'
+        'User-Agent': '1-top_ten'
     }
     response = requests.get(url, headers=headers)
 
