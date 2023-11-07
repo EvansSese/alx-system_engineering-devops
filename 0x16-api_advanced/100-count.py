@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-""" Function to return top ten posts """
+""" Function to return post count """
 import re
 import requests
 import sys
 
 
 def count_words(subreddit, word_list, counts=None, after=None):
-    """ Function to fetch top ten posts """
+    """ Function to fetch post count """
     if counts is None:
         counts = {}
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
