@@ -23,7 +23,7 @@ def count_words(subreddit, word_list, counts=None, after=None):
             for post in post_data:
                 title = post['data']['title']
 
-                # Normalize the title to lowercase and remove special characters
+                # Normalize the title to lowercase and remove special character
                 normalized_title = re.sub(r'[^a-zA-Z0-9 ]', '',
                                           title.lower())
 
