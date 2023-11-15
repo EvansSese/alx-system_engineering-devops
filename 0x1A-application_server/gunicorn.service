@@ -7,11 +7,11 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
 ExecStart=/usr/bin/gunicorn web_dynamic.2-hbnb:app -w 3 -b 127.0.0.1:5003 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log
-Environment=HBNB_MYSQL_USER=hbnb_dev
-Environment=HBNB_MYSQL_PWD=hbnb_dev_pwd
-Environment=HBNB_MYSQL_HOST=localhost
-Environment=HBNB_MYSQL_DB=hbnb_dev_db
-Environment=HBNB_TYPE_STORAGE=db
+Environment="HBNB_MYSQL_USER=hbnb_dev"
+Environment="HBNB_MYSQL_PWD=hbnb_dev_pwd"
+Environment="HBNB_MYSQL_HOST=localhost"
+Environment="HBNB_MYSQL_DB=hbnb_dev_db"
+Environment="HBNB_TYPE_STORAGE=db"
 
 [Install]
 WantedBy=multi-user.target
